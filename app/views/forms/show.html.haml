@@ -1,0 +1,62 @@
+=breadcrumb_tag do
+  %li.active
+    = @form.user.name
+  %li
+    = link_to 'Анкеты', forms_path
+  %li
+    Мой профиль
+
+- if @form.user == @current_user
+  %h1 Мой профиль
+  = link_to "Редактировать данные", edit_form_path
+- else
+  %h1= @form.user.email
+
+%dl
+  - if @form.user == @current_user
+    %dt Приватные данные
+    %dt= User.human_attribute_name(:login)
+    %dd= @form.user.login
+    %dt= User.human_attribute_name(:email)
+    %dd= @form.user.email
+%dl
+  %dt Анкета
+  %dt= Form.human_attribute_name(:user_description)
+  %dd= @form.user_description
+
+  %dt= Form.human_attribute_name(:hobbies)
+  %dd= @form.hobbies
+
+  %dt= Form.human_attribute_name(:bad_habits)
+  %dd= @form.bad_habits
+
+  %dt= Form.human_attribute_name(:type_of_home)
+  %dd= @form.type_of_home
+
+  %dt= Form.human_attribute_name(:purpose_of_acquaintance)
+  %dd= @form.purpose_of_acquaintance
+
+  %dt= User.human_attribute_name(:name)
+  %dd= @form.user.name
+  %dt= User.human_attribute_name(:sex)
+  %dd= @form.user.sex
+  %dt= User.human_attribute_name(:birthday)
+  %dd= @form.user.birthday
+  %dt= User.human_attribute_name(:country)
+  %dd= @form.user.country
+  %dt= User.human_attribute_name(:city)
+  %dd= @form.user.city
+  %br
+
+  -if @current_role_user.is_admin?
+    %dt Данные администратора
+    %dt= User.human_attribute_name(:last_login_at)
+    %dd= lnil(@form.user.last_login_at)
+    %dt= User.human_attribute_name(:reset_password_email_sent_at)
+    %dd= lnil(@form.user.reset_password_email_sent_at)
+    %dt= User.human_attribute_name(:activation_state)
+    %dd= @form.user.activation_state
+    %dt= User.human_attribute_name(:activation_token_expires_at)
+    %dd= lnil(@form.user.activation_token_expires_at)
+    %dt= User.human_attribute_name(:role_users)
+    %dd= @form.user.role_users.map{ |ru| ru.role.name }.uniq.join(', ')

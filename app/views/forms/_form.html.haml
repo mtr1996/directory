@@ -1,0 +1,76 @@
+= form_for @form do |f|
+  - if @form.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@form.errors.count, "error")} prohibited this form from being saved:"
+      %ul
+        - @form.errors.full_messages.each do |message|
+          %li= message
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-primary'
+  .row
+    =f.hidden_field :user_id
+  .form-group
+    = f.label :user_description
+    = f.text_area :user_description
+  .form-group
+    = f.label :hobbies
+    = f.text_area :hobbies
+  .form-group
+    = f.label :bad_habits
+    = f.select :bad_habits, ["Курение","Алкоголь"]
+  .form-group
+    = f.label :type_of_home
+    = f.select :type_of_home, ["Своя квартира", "Живу с родителями", "Съемная квартира"]
+  .form-group
+    = f.label :purpose_of_acquaintance
+    = f.select :purpose_of_acquaintance, ["Дружба", "Серьезные отношения", "Свободные отношения"]
+  = f.fields_for :user do |ff|
+    .row  
+      .col-md-6
+        .form-group
+          = ff.label :email
+          = ff.text_field :email, class: 'form-control'
+        .form-group
+          = ff.label :birthday
+          .input-group.date.datepicker
+            = ff.text_field(:birthday, value: lnil(ff.object.birthday),
+            class: 'form-control')
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+        .form-group
+          = ff.label :country
+          = ff.text_field :country, class: 'form-control'
+          .col-md-6
+            .form-group
+              = ff.label :password
+              = ff.password_field :password, class: 'form-control'
+              = ff.error_messages_for(:password)
+          .col-md-6
+            .form-group
+              = ff.label :password_confirmation
+              = ff.password_field :password_confirmation, class: 'form-control'
+              = ff.error_messages_for(:password_confirmation)
+      .col-md-6
+        .form-group
+          = ff.label :login
+          = ff.text_field :login, class: 'form-control'
+        .form-group
+          = ff.label :name
+          = ff.text_field :name, class: 'form-control'
+        .form-group
+          = ff.label :sex
+          = ff.radio_button(:sex, "Мужской")
+          = ff.label(:sex, "Мужской")
+          = ff.radio_button(:sex, "Женский")
+          = ff.label(:sex, "Женский")
+        .form-group
+      .col-md-6
+        .form-group
+          = ff.label :city
+          = ff.text_field :city, class: 'form-control'
+    - roleuser = RoleUser.new
+    = ff.fields_for(:role_users, roleuser) do |fr|
+      .col-md-6
+        .form-group
+          = fr.label :role
+          = fr.select(:role_id, options_for_select(role_options, fr.object.role_id), {}, class: 'form-control')

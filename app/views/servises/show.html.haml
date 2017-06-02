@@ -1,0 +1,27 @@
+=breadcrumb_tag do
+  %li.active
+    = @servise.id
+  %li
+    = link_to 'Услуги', servises_path
+  %li
+    Администрирование
+
+%h1= @servise.type_serv
+
+%dl
+  %dt= Servise.human_attribute_name(:active_serv)
+  %dd= @servise.active_serv
+
+  %dt= Servise.human_attribute_name(:type_serv)
+  %dd= @servise.type_serv
+
+  %dt= Servise.human_attribute_name(:price_serv)
+  %dd= @servise.price_serv
+
+  %dt= Servise.human_attribute_name(:time_of_payment)
+  %dd= @servise.time_of_payment
+
+  %dt= Servise.human_attribute_name(:user)
+  %dd= @servise.user.login
+
+

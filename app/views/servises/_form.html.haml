@@ -1,0 +1,27 @@
+= form_for @servise do |f|
+  - if @servise.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@servise.errors.count, "error")} prohibited this servise from being saved:"
+      %ul
+        - @servise.errors.full_messages.each do |message|
+          %li= message
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-primary'
+  .field
+    = f.label :active_serv
+    = f.text_area :active_serv
+  .field
+    = f.label :type_serv
+    = f.select :type_serv, ["1","2","3","4","5","6"]
+  .field
+    = f.label :price_serv
+    = f.number_field :price_serv
+  .field
+    = f.label :time_of_payment
+    = f.date_select :time_of_payment
+  .col-md-10
+    - if @current_role_user.is_admin?
+      .form-group
+        = f.label :user
+        = f.collection_select :user_id, User.all, :id, :login, :include_blank => true
+

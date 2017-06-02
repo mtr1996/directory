@@ -1,0 +1,56 @@
+=breadcrumb_tag do
+  %li.active
+    = @user.email
+  - if @user != @current_user
+    %li
+      = link_to 'Пользователи', users_path
+
+- if @user == @current_user
+  %h1 Мой профиль
+  = link_to "Редактировать данные", edit_user_path
+- else
+  %h1= @user.email
+
+%dl
+  - if @user == @current_user
+    %dt Приватные данные
+    %dt= User.human_attribute_name(:login)
+    %dd= @user.login
+    %dt= User.human_attribute_name(:email)
+    %dd= @user.email
+  %br
+  - if @user == @current_user
+    %dt Публичные данные 
+    (доступны для просмотра другими пользователями)
+  %dt= User.human_attribute_name(:name)
+  %dd= @user.name
+  %dt= User.human_attribute_name(:sex)
+  %dd= @user.sex
+  %dt= User.human_attribute_name(:birthday)
+  %dd= @user.birthday
+  %dt= User.human_attribute_name(:country)
+  %dd= @user.country
+  %dt= User.human_attribute_name(:city)
+  %dd= @user.city
+  %br
+
+  %dt= Form.human_attribute_name(:hobbies)
+  %dd= @form.hobbies
+  %dt= Form.human_attribute_name(:bad_habits)
+  %dd= @form.bad_habits
+  %dt= Form.human_attribute_name(:type_of_home)
+  %dd= @form.type_of_home
+  %dt= Form.human_attribute_name(:purpose_of_acquaintance)
+  %dd= @form.purpose_of_acquaintance
+
+  -if @current_role_user.is_admin?
+    %dt= User.human_attribute_name(:last_login_at)
+    %dd= lnil(@user.last_login_at)
+    %dt= User.human_attribute_name(:reset_password_email_sent_at)
+    %dd= lnil(@user.reset_password_email_sent_at)
+    %dt= User.human_attribute_name(:activation_state)
+    %dd= @user.activation_state
+    %dt= User.human_attribute_name(:activation_token_expires_at)
+    %dd= lnil(@user.activation_token_expires_at)
+    %dt= User.human_attribute_name(:role_users)
+    %dd= @user.role_users.map{ |ru| ru.role.name }.uniq.join(', ')

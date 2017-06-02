@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_description: MyText
+  hobbies: MyText
+  bad_habits: MyText
+  type_of_home: MyText
+  purpose_of_acquaintance: MyText
+  user_id: 
+
+two:
+  user_description: MyText
+  hobbies: MyText
+  bad_habits: MyText
+  type_of_home: MyText
+  purpose_of_acquaintance: MyText
+  user_id: 

@@ -1,0 +1,114 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.forms.index')
+  %li
+    =link_to 'Люди', forms_path
+  %li
+    Поиск людей
+.page-header
+
+
+= form_tag search_forms_path(), method: :get do
+  .well
+    %h3= t('Анкета')
+    .row
+      .col-md-4
+        .form-group
+          =Form.human_attribute_name(:user_description)
+          =text_field_tag 'search[user_description]', params['search']['user_description'],class: 'form-control'
+
+      .col-md-4
+        .form-group
+          =Form.human_attribute_name(:hobbies)
+          =text_field_tag 'search[hobbies]', params['search']['hobbies'],class: 'form-control'
+      .col-md-4
+        .form-group
+          =Form.human_attribute_name(:bad_habits)
+          =text_field_tag 'search[bad_habits]', params['search']['bad_habits'],class: 'form-control'
+      .col-md-4
+        .form-group
+          =Form.human_attribute_name(:type_of_home)
+          = select_tag 'search[type_of_home]', options_for_select((Form.all.map{|x| [x.type_of_home]}.uniq), @old_type_of_home),
+          {include_blank: true, class: 'form-control'}
+      .col-md-4
+        .form-group
+          =Form.human_attribute_name(:purpose_of_acquaintance)
+          = select_tag 'search[purpose_of_acquaintance]', options_for_select((Form.all.map{|x| [x.purpose_of_acquaintance]}.uniq), @old_purpose_of_acquaintance),
+          {include_blank: true, class: 'form-control'}
+    %h3= t('Пользователь')
+    .row
+      .col-md-4
+        .form-group
+        =User.human_attribute_name(:name)
+        =text_field_tag 'search[name]', params['search']['name'],class: 'form-control'
+      .col-md-4
+        .form-group
+        =User.human_attribute_name(:birthday)
+        .input-group.date.datepicker
+          =text_field_tag 'search[birthday]', params['search']['birthday'],class: 'form-control'
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
+      .col-md-4
+        .form-group
+        =Form.human_attribute_name(:sex)
+        = select_tag 'search[sex]', options_for_select((User.all.map{|x| [x.sex]}.uniq), @old_sex),
+        {include_blank: true, class: 'form-control'}
+      .col-md-4
+        .form-group
+        =User.human_attribute_name(:country)
+        =text_field_tag 'search[country]', params['search']['country'],class: 'form-control'
+      .col-md-4
+        .form-group
+        =User.human_attribute_name(:city)
+        =text_field_tag 'search[city]', params['search']['city'],class: 'form-control'
+      .col-md-4
+        .form-group
+        =User.human_attribute_name(:login)
+        =text_field_tag 'search[login]', params['search']['login'],class: 'form-control'
+    %h3= t('Услуги')
+    .row
+      .col-md-4
+        .form-group
+        =Servise.human_attribute_name(:active_serv)
+        =text_field_tag 'search[active_serv]', params['search']['active_serv'],class: 'form-control'
+      .col-md-4
+        .form-group
+        =Servise.human_attribute_name(:type_serv)
+        = select_tag 'search[type_serv]', options_for_select((Servise.all.map{|x| [x.type_serv]}.uniq), @old_type_serv),
+        {include_blank: true, class: 'form-control'}
+      .col-md-4
+        .form-group
+        =Servise.human_attribute_name(:price_serv)
+        =text_field_tag 'search[price_serv]', params['search']['price_serv'],class: 'form-control'
+      .col-md-4
+        .form-group
+        =Servise.human_attribute_name(:time_of_payment)
+        .input-group.date.datepicker
+          =text_field_tag 'search[time_of_payment]', params['search']['time_of_payment'],class: 'form-control'
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
+  .actions
+    =submit_tag t('buttons.search.form'), class: 'btn btn-success'
+.page-header
+  %h1= t('Найдено') + ": " + @forms.size.to_s
+- if @forms.size > 0
+  .well
+    .row
+      .form-group
+        %dl
+        - @forms.each do |form|
+          .col-xs-8.col-sm-8.col-lg-6
+            .well
+              %dt= Form.human_attribute_name(:user_description)
+              %dd= form.user_description
+              %dt= Form.human_attribute_name(:hobbies)
+              %dd= form.hobbies
+              %dt= Form.human_attribute_name(:bad_habits)
+              %dd= form.bad_habits
+              %dt= Form.human_attribute_name(:type_of_home)
+              %dd= form.type_of_home
+              %dt= Form.human_attribute_name(:purpose_of_acquaintance)
+              %dd= form.purpose_of_acquaintance
+              %dt= Form.human_attribute_name(:user)
+              %dd= form.user.login
+            
