@@ -52,7 +52,7 @@ class Form < ActiveRecord::Base
            result = result.where(servises: {time_of_payment: params['time_of_payment']})
         end   
         if params['login'].present?
-           result = result.where(users: {time_of_payment: params['login']})
+           result = result.where(users: {login: params['login']})
         end   
     result.all
     end

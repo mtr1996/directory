@@ -4,7 +4,7 @@ class CreateServises < ActiveRecord::Migration
       t.integer :active_serv, null: false
       t.text :type_serv, null: false, limit: 64
       t.integer :price_serv, null: false
-      t.datetime :time_of_payment, :default => nil
+      t.date :time_of_payment, :default => nil
       t.references :user, foreign_key: true
       t.index :user_id
 

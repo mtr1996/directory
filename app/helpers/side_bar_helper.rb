@@ -2,15 +2,9 @@ module SideBarHelper
   def side_bar_items(ru)
     result = []
     result << {
-      :name => 'Сслыка без детей',
+      :name => 'Главная',
       :icon => 'list',
       :controller => :welcome, 
-      :action => :index
-    }
-    result << {
-      :name => 'Услуги',
-      :icon => 'credit-card',
-      :controller => :servises, 
       :action => :index
     }
     result << {
@@ -20,9 +14,21 @@ module SideBarHelper
       :action => :profile
     }
     result << {
-       :name => 'Анкеты(nested/users)',
+      :name => 'Услуги',
+      :icon => 'credit-card',
+      :controller => :servises, 
+      :action => :index
+    }
+    result << {
+       :name => 'Анкеты',
        :controller => :forms, :action => :index,
        :icon => 'users'
+    }
+    result << {
+      :name => 'Поиск',
+      :icon => 'search',
+      :controller => :forms, 
+      :action => :search
     }
     result << {
       :name => 'Администрирование',
@@ -39,18 +45,6 @@ module SideBarHelper
        :controller => :roles, :action => :index,
        :icon => 'align-center',
        :class => 'long'},
-    ]} 
-    result << {
-      :name => 'Заголовок ссылок',
-      :icon => 'search-plus',
-      :children => [
-      {:name => 'Ссылка ребёнок',
-       :controller => :welcome, :action => :index,
-       :icon => 'binoculars'},
-      {:name => 'Ссылка ребёнок',
-       :controller => :welcome, :action => :index,
-       :icon => 'search',
-       :class => 'long'}
     ]} 
     result
   end

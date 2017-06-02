@@ -28,12 +28,12 @@
       .col-md-4
         .form-group
           =Form.human_attribute_name(:type_of_home)
-          = select_tag 'search[type_of_home]', options_for_select((Form.all.map{|x| [x.type_of_home]}.uniq), @old_type_of_home),
+          =select_tag 'search[type_of_home]', options_for_select((Form.all.map{|x| [x.type_of_home]}.uniq), @old_type_of_home),
           {include_blank: true, class: 'form-control'}
       .col-md-4
         .form-group
           =Form.human_attribute_name(:purpose_of_acquaintance)
-          = select_tag 'search[purpose_of_acquaintance]', options_for_select((Form.all.map{|x| [x.purpose_of_acquaintance]}.uniq), @old_purpose_of_acquaintance),
+          =select_tag 'search[purpose_of_acquaintance]', options_for_select((Form.all.map{|x| [x.purpose_of_acquaintance]}.uniq), @old_purpose_of_acquaintance),
           {include_blank: true, class: 'form-control'}
     %h3= t('Пользователь')
     .row
@@ -51,7 +51,7 @@
       .col-md-4
         .form-group
         =Form.human_attribute_name(:sex)
-        = select_tag 'search[sex]', options_for_select((User.all.map{|x| [x.sex]}.uniq), @old_sex),
+        =select_tag 'search[sex]', options_for_select((User.all.map{|x| [x.sex]}.uniq), @old_sex),
         {include_blank: true, class: 'form-control'}
       .col-md-4
         .form-group
@@ -74,7 +74,7 @@
       .col-md-4
         .form-group
         =Servise.human_attribute_name(:type_serv)
-        = select_tag 'search[type_serv]', options_for_select((Servise.all.map{|x| [x.type_serv]}.uniq), @old_type_serv),
+        =select_tag 'search[type_serv]', options_for_select((Servise.all.map{|x| [x.type_serv]}.uniq), @old_type_serv),
         {include_blank: true, class: 'form-control'}
       .col-md-4
         .form-group
@@ -97,7 +97,7 @@
       .form-group
         %dl
         - @forms.each do |form|
-          .col-xs-8.col-sm-8.col-lg-6
+          .col-md-6
             .well
               %dt= Form.human_attribute_name(:user_description)
               %dd= form.user_description

@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170512163244) do
     t.integer  "active_serv",     null: false
     t.text     "type_serv",       null: false
     t.integer  "price_serv",      null: false
-    t.datetime "time_of_payment"
+    t.date     "time_of_payment"
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
